@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <h4>Array1</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="array1">
+        </tbody>
+    </table>
+    <h4>Array2</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody id="array2">
+        </tbody>
+    </table>
+    <hr/>
+    <h4>Output</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody id="output">
+        </tbody>
+    </table>
+</body>
+
+<script>
+    array1 = [{ code: 101, name: "AAA" }, { code: 102, name: "BBB" }, { code: 103, name: "CCC" }]
+    array2 = [{ code: 103, city: "Singapore" }, { code: 102, city: "Tokyo" }, { code: 101, city: "Bangkok" }]
+
+    const output = array1.map((item1) => {
+        const data = array2.find((item2) => item1.code === item2.code)
+        // console.log(data)
+        return { code: item1.code, name: item1.name, city: data.city }
+    })
+    // console.log(output)
+
+    let table1 = document.getElementById('array1')
+    let table2 = document.getElementById('array2')
+    let table3 = document.getElementById('output')
+
+    for (let i = 0; i < array1.length; i++) {
+        const code = `<tr>
+            <td>${array1[i].code}</td>
+            <td>${array1[i].name}</td>
+        </tr>`
+        table1.innerHTML += code
+    }
+
+    for (let i = 0; i < array2.length; i++) {
+        const code = `<tr>
+            <td>${array2[i].code}</td>
+            <td>${array2[i].city}</td>
+        </tr>`
+        table2.innerHTML += code
+    }
+
+
+    for (let i = 0; i < output.length; i++) {
+        const code = `<tr>
+            <td>${output[i].code}</td>
+            <td>${output[i].name}</td>
+            <td>${output[i].city}</td>
+        </tr>`
+        table3.innerHTML += code
+    }
+</script>
+
+</html>

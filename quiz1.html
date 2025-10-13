@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <a>Number of Star:</a>
+        <input id="countInput" />
+        <button type="button" onclick="flowerMondey()">Go</button>
+    </div>
+    <div id="zone"></div>
+</body>
+<script>
+
+    const flowerMondey = () => {
+        let count = document.getElementById("countInput").value;
+        let check = count % 2
+        let div = document.getElementById("zone")
+        let child = document.getElementById("zone").children
+
+        if (child.length != 0) {
+            div.innerHTML = '';
+        }
+        if (check == 0) {
+            for (let i = 1; i <= count; i++) {
+                let p = document.createElement("P");
+                let t = document.createTextNode("*".repeat(i),);
+                p.appendChild(t)
+                div.appendChild(p)
+            }
+            return
+        } else if (check == 1) {
+            for (let i = 0; i <= count; i++) {
+                let p = document.createElement("P");
+                let t = document.createTextNode("*".repeat(count - i));
+                p.appendChild(t)
+                div.appendChild(p)
+            }
+            return
+        }
+    }
+
+</script>
+
+</html>

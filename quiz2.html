@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    .hover {
+        cursor: pointer
+    }
+</style>
+
+<body>
+    <p>ผู้ใช้กรอกได้ 1 ช่อง</p>
+    <table style="width:48%">
+        <tr>
+            <th>100</th>
+            <th>7</th>
+            <th>107</th>
+            <th>3</th>
+            <th>104</th>
+        </tr>
+        <tr>
+            <td>
+                <input id="value1" />
+            </td>
+            <td>
+                <input id="value2" />
+            </td>
+            <td>
+                <input id="value3" />
+            </td>
+            <td>
+                <input id="value4" />
+            </td>
+            <td>
+                <input id="value5" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <button onclick="Calculator()">Go</button>
+    <a onclick="Clear()" class="hover"><u>Clear</u></a>
+</body>
+<script>
+    let numberValue = [100, 7, 107, 3, 104]
+    let onCalculator = false
+    let number
+    let value
+    let multiplied
+
+    const Calculator = () => {
+        for (let i = 1; i < 6; i++) {
+            if (document.getElementById(`value${i}`).value !== '') {
+                value = document.getElementById(`value${i}`).value
+                number = i - 1
+                break
+            }
+        }
+
+        if (isNaN(value)) {
+            onCalculator = false
+            for (let i = 1; i < 6; i++) {
+                document.getElementById(`value${i}`).value = '0';
+            }
+            return
+        }
+
+        multiplied = value / numberValue[number]
+
+        for (let i = 1; i < 6; i++) {
+            document.getElementById(`value${i}`).value = parseInt(multiplied * numberValue[i - 1]);
+        }
+        return
+    }
+
+    const Clear = () => {
+        onCalculator = false
+        for (let i = 1; i < 6; i++) {
+            document.getElementById(`value${i}`).value = '';
+        }
+        return
+    }
+</script>
+
+</html>
